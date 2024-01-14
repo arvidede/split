@@ -1,5 +1,16 @@
-import styles from "./page.module.css"
+import SignOut from "@/components/SignOut"
+import { getSession } from "@/db/server"
+import protect from "./auth/protect"
 
-export default function Home() {
-    return <main className={styles.main}></main>
+async function Page() {
+    await protect()
+    const session = await getSession()
+    return (
+        <main>
+            {JSON.stringify(session, null, 2)}
+            <SignOut />
+        </main>
+    )
 }
+
+export default Page
