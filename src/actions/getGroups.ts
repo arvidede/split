@@ -1,4 +1,4 @@
-import getServerClient from "../../db/server"
+import getServerClient from "../db/server"
 
 export default async function getGroups() {
     const db = getServerClient()

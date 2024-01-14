@@ -14,7 +14,6 @@ export default function CreateNewGroup() {
     }
     return (
         <section>
-            <h2>Skapa ny grupp</h2>
             <input
                 type="text"
                 name=""

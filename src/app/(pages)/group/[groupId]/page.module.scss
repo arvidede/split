@@ -1,0 +1,11 @@
+@import "@/styles/main";
+
+.container {
+  flex: 1;
+  padding: $spacing-m;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+  }
+}

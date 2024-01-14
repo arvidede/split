@@ -1,6 +1,6 @@
 "use client"
 
-import createExpense from "@/app/actions/createExpense"
+import createExpense from "@/actions/createExpense"
 import { useRef, useState } from "react"
 import Modal from "../Modal"
 

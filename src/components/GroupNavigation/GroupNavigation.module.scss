@@ -1,0 +1,20 @@
+@import "@/styles/main";
+
+.container {
+  height: 100%;
+  border-right: $border-regular;
+  padding: $spacing-m;
+
+  .groupHeader {
+    display: flex;
+    column-gap: $spacing-s;
+  }
+
+  ul {
+    list-style: none;
+    li {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
