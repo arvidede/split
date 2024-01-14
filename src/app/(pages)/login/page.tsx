@@ -7,8 +7,8 @@ export default function Login() {
             <input type="password" name="password" />
             <label htmlFor="name">Name</label>
             <input type="text" name="name" />
-            <button>Sign In</button>
             <button formAction="/auth/sign-up">Sign Up</button>
+            <button>Sign In</button>
         </form>
     )
 }

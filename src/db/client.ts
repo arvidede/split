@@ -1,5 +1,5 @@
 import { createBrowserClient } from "@supabase/ssr"
-import { Database } from "./db"
+import { Database } from "../types/db"
 
 let client: ReturnType<typeof createBrowserClient<Database>>
 
@@ -11,4 +11,12 @@ export default function getBrowserClient() {
         )
     }
     return client
+}
+
+export async function getSession() {
+    const supabase = getBrowserClient()
+    const {
+        data: { session },
+    } = await supabase.auth.getSession()
+    return session
 }
