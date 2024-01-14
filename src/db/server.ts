@@ -2,6 +2,8 @@ import { Database } from "@/types/db"
 import { createServerClient, type CookieOptions } from "@supabase/ssr"
 import { cookies } from "next/headers"
 
+type ServerClient = Awaited<ReturnType<typeof getServerClient>>
+
 export default function getServerClient() {
     const cookieStore = cookies()
 
@@ -24,10 +26,18 @@ export default function getServerClient() {
     )
 }
 
-export async function getSession() {
-    const supabase = getServerClient()
+export async function getSession(client?: ServerClient) {
+    const supabase = client || getServerClient()
     const {
         data: { session },
     } = await supabase.auth.getSession()
-    return session
+    return session?.user
+}
+
+export async function getUser(client?: ServerClient) {
+    const supabase = client || getServerClient()
+    const {
+        data: { session },
+    } = await supabase.auth.getSession()
+    return session?.user
 }

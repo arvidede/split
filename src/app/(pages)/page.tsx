@@ -1,4 +1,6 @@
-import SignOut from "@/components/SignOut"
+import GroupNavigation from "@/components/GroupNavigation"
+import Header from "@/components/Header"
+import Summary from "@/components/Summary"
 import { getSession } from "@/db/server"
 import protect from "../auth/protect"
 
@@ -8,7 +10,9 @@ async function Page() {
     return (
         <main>
             {JSON.stringify(session, null, 2)}
-            <SignOut />
+            <Header />
+            <Summary />
+            <GroupNavigation />
         </main>
     )
 }
