@@ -1,3 +1,5 @@
+@import "@/styles/main";
+
 .container {
   display: flex;
   position: relative;
@@ -5,15 +7,15 @@
   box-shadow:
     rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-  border-radius: 5px;
-  padding: 1rem;
+  border-radius: $border-radius_small;
+  padding: $spacing-m;
 
   .delete {
     display: none;
     padding: 0;
     margin: 0;
     position: absolute;
-    right: 1rem;
+    right: $spacing-m;
   }
 
   &:hover {

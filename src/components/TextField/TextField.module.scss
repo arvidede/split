@@ -1,0 +1,16 @@
+@import "@/styles/main";
+
+.input {
+  background-color: $color_white;
+  padding: $spacing-s;
+  border-radius: $border-radius_small;
+  border: none;
+  box-shadow: $shadow_float-low;
+  outline: none;
+  transition: box-shadow $transition-default;
+  color: $text_regular;
+
+  &:focus {
+    box-shadow: $shadow_float-sticky;
+  }
+}

@@ -3,7 +3,7 @@ import protect from "@/app/auth/protect"
 import AddNewExpense from "@/components/AddNewExpense"
 import ExpenseList from "@/components/ExpenseList"
 import { redirect } from "next/navigation"
-import styles from "./page.module.scss"
+import styles from "./groupId.module.scss"
 
 interface Props {
     params: {
@@ -20,7 +20,7 @@ async function Page({ params }: Props) {
     return (
         <section className={styles.container}>
             <div className={styles.header}>
-                {group.name}
+                <h3>{group.name}</h3>
                 <AddNewExpense groupId={group.id} />
             </div>
             <ExpenseList expenses={group.expenses} groupId={group.id} />

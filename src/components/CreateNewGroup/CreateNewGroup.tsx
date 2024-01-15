@@ -1,17 +1,15 @@
 "use client"
 
-import getBrowserClient from "@/db/client"
+import createGroup from "@/actions/createGroup"
 import { useState } from "react"
 
 export default function CreateNewGroup() {
     const [groupName, setGroupName] = useState("")
+
     async function handleCreateNewGroup() {
-        const db = getBrowserClient()
-        await db.from("groups").insert({
-            name: groupName,
-            description: "",
-        })
+        createGroup(groupName)
     }
+
     return (
         <section>
             <input

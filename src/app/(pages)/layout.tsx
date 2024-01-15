@@ -1,5 +1,5 @@
-import GroupNavigation from "@/components/GroupNavigation"
 import Header from "@/components/Header"
+import { getSession } from "@/db/server"
 import "@/styles/globals.scss"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
@@ -16,16 +16,12 @@ export default async function RootLayout({
 }: {
     children: React.ReactNode
 }) {
+    const session = await getSession()
     return (
         <html lang="en">
             <body className={inter.className}>
-                <Header />
-                <main>
-                    <aside>
-                        <GroupNavigation />
-                    </aside>
-                    {children}
-                </main>
+                <Header session={session} />
+                <main>{children}</main>
             </body>
         </html>
     )

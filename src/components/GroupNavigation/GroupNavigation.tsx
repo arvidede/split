@@ -9,7 +9,9 @@ export default async function GroupNavigation() {
         <section className={styles.container}>
             <span className={styles.groupHeader}>
                 <h5>Dina grupper</h5>
-                <button>+</button>
+                <Link href="/group/new">
+                    <button>+</button>
+                </Link>
             </span>
             <ul>
                 {groups?.map((group) => (
