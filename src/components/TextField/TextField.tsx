@@ -12,6 +12,8 @@ interface Props {
     type?: Input["type"]
     id?: Input["id"]
     placeholder?: Input["placeholder"]
+    required?: Input["required"]
+    loading?: boolean
 }
 
 export default function TextField({
@@ -22,16 +24,21 @@ export default function TextField({
     type,
     id,
     placeholder,
+    required,
+    loading,
 }: Props) {
     return (
-        <input
-            className={clsx(styles.input, className)}
-            value={value}
-            onChange={onChange}
-            name={name}
-            type={type}
-            id={id}
-            placeholder={placeholder}
-        />
+        <div className={clsx(styles.container, loading && styles.loading)}>
+            <input
+                className={clsx(styles.input, className)}
+                value={value}
+                onChange={onChange}
+                name={name}
+                type={type}
+                id={id}
+                placeholder={placeholder}
+                required={required}
+            />
+        </div>
     )
 }

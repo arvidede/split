@@ -1,10 +1,9 @@
+"use server"
+
 import getServerClient from "@/db/server"
-import { NextResponse } from "next/server"
+import { redirect } from "next/navigation"
 
-export async function POST(request: Request) {
-    const requestUrl = new URL(request.url)
-    const formData = await request.formData()
-
+export default async function signUp(formData: FormData) {
     const email = String(formData.get("email"))
     const password = String(formData.get("password"))
     const name = String(formData.get("name"))
@@ -15,14 +14,12 @@ export async function POST(request: Request) {
         email: email,
         password: password,
         options: {
-            emailRedirectTo: `${requestUrl.origin}/auth/callback`,
+            emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
             data: {
                 name,
             },
         },
     })
 
-    return NextResponse.redirect(requestUrl.origin, {
-        status: 301,
-    })
+    return redirect("/")
 }

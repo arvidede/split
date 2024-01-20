@@ -1,0 +1,15 @@
+@import "@/styles/main";
+
+.form {
+  display: flex;
+  flex-direction: column;
+  row-gap: $spacing-m;
+  min-width: 280px;
+  max-width: 80vw;
+
+  .fade {
+    display: flex;
+    flex-direction: column;
+    row-gap: $spacing-m;
+  }
+}

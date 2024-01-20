@@ -1,9 +1,9 @@
-import getServerClient from "@/db/server"
-import { NextResponse } from "next/server"
+"use server"
 
-export async function POST(request: Request) {
-    const requestUrl = new URL(request.url)
-    const formData = await request.formData()
+import getServerClient from "@/db/server"
+import { redirect } from "next/navigation"
+
+export default async function signIn(formData: FormData) {
     const email = String(formData.get("email"))
     const password = String(formData.get("password"))
 
@@ -14,7 +14,5 @@ export async function POST(request: Request) {
         password,
     })
 
-    return NextResponse.redirect(requestUrl.origin, {
-        status: 301,
-    })
+    return redirect("/")
 }
