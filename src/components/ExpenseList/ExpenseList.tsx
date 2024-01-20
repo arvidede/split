@@ -1,7 +1,7 @@
 "use client"
 
-import type { Expense as ExpenseType } from "@/app/types"
-import useExpenses from "@/hooks/useExpenses"@/types
+import useExpenses from "@/hooks/useExpenses"
+import type { Expense as ExpenseType } from "@/types"
 import Expense from "../Expense"
 import styles from "./ExpenseList.module.scss"
 

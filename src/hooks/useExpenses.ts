@@ -1,5 +1,5 @@
-import { Expense } from "@/app@/app/db/client"
 import getBrowserClient from "@/db/client"
+import { Expense } from "@/types"
 import { useEffect, useState } from "react"
 
 export default function useExpenses(
