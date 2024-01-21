@@ -1,6 +1,6 @@
 "use client"
 
-import createGroup from "@/actions/createGroup"
+import createGroup from "@/actions/group/createGroup"
 import { useState } from "react"
 
 export default function CreateNewGroup() {

@@ -1,0 +1,13 @@
+@import "@/styles/main";
+
+.container {
+  padding: $spacing-xs $spacing-m;
+  box-shadow: $shadow_float-sticky;
+  border-radius: $border-radius_xs;
+  cursor: pointer;
+
+  &.selected {
+    background-color: $color_primary;
+    color: $color_white;
+  }
+}

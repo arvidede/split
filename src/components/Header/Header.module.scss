@@ -1,0 +1,7 @@
+@import "@/styles/main";
+
+.header {
+  display: flex;
+  padding: $spacing-m;
+  justify-content: flex-end;
+}

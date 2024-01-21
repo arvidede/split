@@ -2,6 +2,7 @@
 
 import getBrowserClient from "@/db/client"
 import { useRouter } from "next/navigation"
+import Button from "../Button"
 
 export default function SignOut() {
     const router = useRouter()
@@ -12,5 +13,5 @@ export default function SignOut() {
         router.refresh()
     }
 
-    return <button onClick={handleSignOut}>Logga ut</button>
+    return <Button onClick={handleSignOut}>Logga ut</Button>
 }

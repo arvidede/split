@@ -1,7 +1,8 @@
-import getGroup from "@/actions/getGroup"
+import getGroup from "@/actions/group/getGroup"
 import protect from "@/app/auth/protect"
 import AddNewExpense from "@/components/AddNewExpense"
 import ExpenseList from "@/components/ExpenseList"
+import GroupProvider from "@/context/Group"
 import { redirect } from "next/navigation"
 import styles from "./groupId.module.scss"
 
@@ -18,13 +19,15 @@ async function Page({ params }: Props) {
         return redirect("/")
     }
     return (
-        <section className={styles.container}>
-            <div className={styles.header}>
-                <h3>{group.name}</h3>
-                <AddNewExpense groupId={group.id} />
-            </div>
-            <ExpenseList expenses={group.expenses} groupId={group.id} />
-        </section>
+        <GroupProvider group={group}>
+            <section className={styles.container}>
+                <div className={styles.header}>
+                    <h3>{group.name}</h3>
+                    <AddNewExpense />
+                </div>
+                <ExpenseList />
+            </section>
+        </GroupProvider>
     )
 }
 

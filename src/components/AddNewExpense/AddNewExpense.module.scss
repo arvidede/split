@@ -1,0 +1,12 @@
+@import "@/styles/main";
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-m;
+
+  .amount {
+    display: flex;
+    column-gap: $spacing-m;
+  }
+}

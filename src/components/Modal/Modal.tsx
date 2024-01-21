@@ -2,6 +2,7 @@
 
 import clsx from "clsx"
 import { ReactNode } from "react"
+import Button from "../Button"
 import styles from "./Modal.module.scss"
 
 interface Props {
@@ -12,20 +13,30 @@ interface Props {
     onConfirm: () => void
 }
 
-export default function Modal(props: Props) {
+export default function Modal({
+    open,
+    title,
+    children,
+    onClose,
+    onConfirm,
+}: Props) {
     return (
         <>
             <div
-                className={clsx(styles.backdrop, props.open && styles.open)}
-                onClick={props.onClose}
+                className={clsx(styles.backdrop, open && styles.open)}
+                onClick={onClose}
             />
-            <dialog open={props.open} className={styles.modal}>
-                <div>{props.title}</div>
-                <div>{props.children}</div>
-                <div>
-                    <button onClick={props.onClose}>Cancel</button>
-                    <button onClick={props.onConfirm}>Save</button>
-                </div>
+            <dialog open={open} className={styles.modal}>
+                <h3>{title}</h3>
+                <section>{children}</section>
+                <section className={styles.actions}>
+                    <Button onClick={onClose} variant="secondary">
+                        Cancel
+                    </Button>
+                    <Button onClick={onConfirm} variant="primary">
+                        Save
+                    </Button>
+                </section>
             </dialog>
         </>
     )

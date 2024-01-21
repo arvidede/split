@@ -7,6 +7,7 @@ type Input = InputHTMLAttributes<HTMLInputElement>
 interface Props {
     className?: Input["className"]
     value?: Input["value"]
+    defaultValue?: Input["defaultValue"]
     onChange?: Input["onChange"]
     name?: Input["name"]
     type?: Input["type"]
@@ -19,6 +20,7 @@ interface Props {
 export default function TextField({
     className,
     value,
+    defaultValue,
     onChange,
     name,
     type,
@@ -32,6 +34,7 @@ export default function TextField({
             <input
                 className={clsx(styles.input, className)}
                 value={value}
+                defaultValue={defaultValue}
                 onChange={onChange}
                 name={name}
                 type={type}

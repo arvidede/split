@@ -1,28 +1,24 @@
 "use client"
 
+import { useGroup } from "@/context/Group"
 import useExpenses from "@/hooks/useExpenses"
-import type { Expense as ExpenseType } from "@/types"
+import { Expense as ExpenseType } from "@/types"
 import Expense from "../Expense"
 import styles from "./ExpenseList.module.scss"
 
-interface Props {
-    expenses: ExpenseType[]
-    groupId: string
-}
+interface Props {}
 
-export default function ExpenseList({
-    expenses: initialExpenses,
-    groupId,
-}: Props) {
+export default function ExpenseList({}: Props) {
+    const { id: groupId, expenses: initialExpenses } = useGroup()
     const { expenses } = useExpenses(initialExpenses, groupId)
 
     return (
         <div className={styles.container}>
-            <ul className={styles.list}>
-                {expenses.map((expense) => (
-                    <Expense key={expense.id} expense={expense} />
-                ))}
-            </ul>
+            <ul className={styles.list}>{expenses.map(createExpense)}</ul>
         </div>
     )
+}
+
+function createExpense(expense: ExpenseType) {
+    return <Expense key={expense.id} expense={expense} />
 }

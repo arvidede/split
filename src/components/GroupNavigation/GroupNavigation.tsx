@@ -1,4 +1,4 @@
-import getGroups from "@/actions/getGroups"
+import getGroups from "@/actions/group/getGroups"
 import Link from "next/link"
 import styles from "./GroupNavigation.module.scss"
 

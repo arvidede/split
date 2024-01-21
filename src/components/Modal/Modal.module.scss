@@ -1,3 +1,5 @@
+@import "@/styles/main";
+
 .backdrop {
   z-index: -1;
   position: fixed;
@@ -24,4 +26,20 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  background-color: #fff;
+  color: $text_regular;
+  border: none;
+  box-shadow: $shadow_float-low;
+  border-radius: $border-radius_small;
+
+  h3,
+  section {
+    padding: $spacing-m;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    column-gap: $spacing-s;
+  }
 }

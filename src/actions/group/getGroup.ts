@@ -11,25 +11,26 @@ export default async function getGroup(groupId: string) {
             description,
             created_at,
             last_modified,
-            thumbnail_url,
+            thumbnail_url,            
+            members:${profiles},
             expenses (
                 id,
                 title,
+                date,
                 group_id,
                 created_at,
                 last_modified,
                 amount,
                 currency,
-                author,
+                author:${profiles},
                 payments (
-                    user_id,
-                    expense_id,
+                    user:${profiles},
                     weight
                 ),
                 comments (
                     id,
                     text,
-                    author_id,
+                    author:${profiles},
                     expense_id,
                     created_at,
                     last_modified
@@ -46,3 +47,14 @@ export default async function getGroup(groupId: string) {
 
     return group
 }
+
+const profiles = `
+    profiles (
+        id,
+        name,
+        avatar_url,
+        created_at,
+        last_modified,
+        email
+    )
+`

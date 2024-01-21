@@ -26,8 +26,19 @@ export default function LoginForm() {
         setView(View.SignUp)
     }, [])
 
+    const handleSubmit = (formData: FormData) => {
+        switch (view) {
+            case View.Email:
+                break
+            case View.Login:
+                return signIn(formData)
+            case View.SignUp:
+                return signUp(formData)
+        }
+    }
+
     return (
-        <form className={styles.form}>
+        <form className={styles.form} action={handleSubmit}>
             <FadeIn visible delay={500}>
                 <Email
                     onSuccess={handleExistingEmail}
@@ -42,7 +53,7 @@ export default function LoginForm() {
                     placeholder="Password"
                     required
                 />
-                <FormButton formAction={signIn}>Sign In</FormButton>
+                <FormButton>Sign In</FormButton>
             </FadeIn>
 
             <FadeIn visible={view === View.SignUp} className={styles.fade}>
@@ -64,7 +75,7 @@ export default function LoginForm() {
                     placeholder="Repeat password"
                     required
                 />
-                <FormButton formAction={signUp}>Sign Up</FormButton>
+                <FormButton>Sign Up</FormButton>
             </FadeIn>
         </form>
     )

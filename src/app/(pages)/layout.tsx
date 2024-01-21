@@ -1,7 +1,7 @@
 import Header from "@/components/Header"
 import { getSession } from "@/db/server"
 import "@/styles/globals.scss"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -9,6 +9,14 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
     title: "Split",
     description: "Split",
+}
+
+export const viewport: Viewport = {
+    themeColor: "#fff",
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: true,
 }
 
 export default async function RootLayout({

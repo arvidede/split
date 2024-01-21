@@ -1,8 +1,16 @@
 "use client"
 
-import createExpense from "@/actions/createExpense"
-import { useRef, useState } from "react"
+import createExpense from "@/actions/expense/createExpense"
+import DatePicker from "@/components/DatePicker"
+import { useGroup } from "@/context/Group"
+import useBoolean from "@/hooks/useBoolean"
+import { useRef } from "react"
+import Button from "../Button"
 import Modal from "../Modal"
+import TextField from "../TextField"
+import styles from "./AddNewExpense.module.scss"
+import CurrencyPicker from "./CurrencyPicker"
+import PaidBy from "./PaidBy"
 
 const initialState = {
     title: "",
@@ -10,13 +18,14 @@ const initialState = {
     amount: 0,
 }
 
-interface Props {
-    groupId: string
-}
+interface Props {}
 
-export default function AddNewExpense({ groupId }: Props) {
+export default function AddNewExpense({}: Props) {
     const formRef = useRef<HTMLFormElement>(null)
-    const [showModal, setShowModal] = useState(false)
+    const modal = useBoolean(false)
+    const { id: groupId, ...rest } = useGroup()
+
+    console.log(rest)
 
     function handleSubmit() {
         formRef.current?.requestSubmit()
@@ -25,42 +34,39 @@ export default function AddNewExpense({ groupId }: Props) {
     async function submit(formData: FormData) {
         const { ok } = await createExpense(groupId, formData)
         if (ok) {
-            setShowModal(false)
+            modal.setFalse()
         }
     }
 
     return (
         <div>
-            <button onClick={() => setShowModal(true)}>Add an expense</button>
+            <Button onClick={modal.setTrue}>Add an expense</Button>
             <Modal
-                open={showModal}
+                open={modal.state}
                 title="Add an expense"
-                onClose={() => setShowModal(false)}
+                onClose={modal.setFalse}
                 onConfirm={handleSubmit}
             >
-                <form ref={formRef} action={submit}>
-                    <div>
-                        <input
-                            type="text"
-                            placeholder="Enter a description"
-                            name="title"
-                            defaultValue={initialState.title}
+                <form ref={formRef} action={submit} className={styles.form}>
+                    <TextField
+                        type="text"
+                        placeholder="Enter a description"
+                        name="title"
+                        defaultValue={initialState.title}
+                    />
+                    <div className={styles.amount}>
+                        <CurrencyPicker />
+                        <TextField
+                            name="amount"
+                            type="number"
+                            placeholder="0.00"
+                            defaultValue={initialState.amount}
                         />
-                        <span>
-                            <input
-                                name="currency"
-                                type="text"
-                                placeholder="Currency"
-                                defaultValue={initialState.currency}
-                            />
-                            <input
-                                name="amount"
-                                type="number"
-                                placeholder="0.00"
-                                defaultValue={initialState.amount}
-                            />
-                        </span>
                     </div>
+
+                    <PaidBy />
+
+                    <DatePicker />
                 </form>
             </Modal>
         </div>

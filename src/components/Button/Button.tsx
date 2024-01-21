@@ -13,6 +13,7 @@ interface Props {
     type?: Button["type"]
     role?: Button["role"]
     disabled?: Button["disabled"]
+    variant?: "primary" | "secondary"
 }
 
 export default function Button({
@@ -20,7 +21,8 @@ export default function Button({
     onClick,
     formAction,
     className,
-    type,
+    type = "submit",
+    variant = "primary",
     role,
     disabled,
 }: Props) {
@@ -28,7 +30,7 @@ export default function Button({
         <button
             formAction={formAction}
             onClick={onClick}
-            className={clsx(styles.button, className)}
+            className={clsx(styles.button, className, styles[variant])}
             type={type}
             role={role}
             disabled={disabled}

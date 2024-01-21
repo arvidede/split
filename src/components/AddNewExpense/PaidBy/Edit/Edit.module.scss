@@ -1,0 +1,28 @@
+@import "@/styles/main";
+
+.edit {
+  display: flex;
+  flex-direction: column;
+  row-gap: $spacing-m;
+
+  .methods {
+    display: flex;
+    column-gap: $spacing-s;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    row-gap: $spacing-s;
+
+    li {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

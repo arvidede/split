@@ -1,0 +1,7 @@
+@import "@/styles/main";
+
+.person {
+  display: flex;
+  align-items: center;
+  column-gap: $spacing-m;
+}

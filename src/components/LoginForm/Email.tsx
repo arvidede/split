@@ -1,4 +1,4 @@
-import doesUserExist from "@/actions/doesUserExist"
+import doesUserExist from "@/actions/user/doesUserExist"
 import useDebouncedInput from "@/hooks/useDebouncedInput"
 import { useEffect, useState } from "react"
 import TextField from "../TextField"
@@ -11,7 +11,7 @@ interface Props {
 export default function Email({ onSuccess, onFail }: Props) {
     const [input, setInput] = useState("")
     const [loading, setLoading] = useState(false)
-    const debouncedInput = useDebouncedInput(input, 1000)
+    const debouncedInput = useDebouncedInput(input, 2000)
 
     useEffect(() => {
         if (debouncedInput) {
