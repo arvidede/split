@@ -31,13 +31,10 @@ export async function getSession(client?: ServerClient) {
     const {
         data: { session },
     } = await supabase.auth.getSession()
-    return session?.user
+    return session
 }
 
 export async function getUser(client?: ServerClient) {
-    const supabase = client || getServerClient()
-    const {
-        data: { session },
-    } = await supabase.auth.getSession()
+    const session = await getSession(client)
     return session?.user
 }
