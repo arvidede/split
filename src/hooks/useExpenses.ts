@@ -1,4 +1,4 @@
-import getBrowserClient from "@/db/client"
+import subscribeToGroup from "@/db/actions/subscribeToGroup"
 import { Expense } from "@/types"
 import { useEffect, useState } from "react"
 
@@ -11,6 +11,7 @@ export default function useExpenses(
     function handleAddExpense(event: any) {
         setExpenses((current) => [...current, event.new])
     }
+
     function handleUpdateExpense(event: any) {
         setExpenses((current) =>
             current.map((it) => (it.id === event.new.id ? event.new : it)),
@@ -22,44 +23,12 @@ export default function useExpenses(
     }
 
     useEffect(() => {
-        const client = getBrowserClient()
-        const channel = client
-            .channel("new-expense")
-            .on(
-                "postgres_changes",
-                {
-                    event: "INSERT",
-                    schema: "public",
-                    table: "expenses",
-                    filter: `group_id=eq.${groupId}`,
-                },
-                handleAddExpense,
-            )
-            .on(
-                "postgres_changes",
-                {
-                    event: "UPDATE",
-                    schema: "public",
-                    table: "expenses",
-                    filter: `group_id=eq.${groupId}`,
-                },
-                handleUpdateExpense,
-            )
-            .on(
-                "postgres_changes",
-                {
-                    event: "DELETE",
-                    schema: "public",
-                    table: "expenses",
-                    filter: `group_id=eq.${groupId}`,
-                },
-                handleDeleteExpense,
-            )
-            .subscribe()
-
-        return () => {
-            client.removeChannel(channel)
-        }
+        return subscribeToGroup({
+            groupId,
+            onAdd: handleAddExpense,
+            onUpdate: handleUpdateExpense,
+            onDelete: handleDeleteExpense,
+        })
     }, [groupId])
 
     return {
