@@ -1,11 +1,11 @@
 "use client"
 
-import type { User } from "@/types"
+import type { Session } from "@/types"
 import SignOut from "../SignOut"
 import styles from "./Header.module.scss"
 
 interface Props {
-    session: User | undefined
+    session: Session | null
 }
 
 export default function Header({ session }: Props) {

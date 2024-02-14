@@ -9,4 +9,4 @@ export type Expense = FromArray<Group, "expenses">
 export type Payment = FromArray<Expense, "payments">
 export type Profile = Database["public"]["Tables"]["profiles"]["Row"]
 
-export type { User } from "@supabase/supabase-js"
+export type { Session, User } from "@supabase/supabase-js"
